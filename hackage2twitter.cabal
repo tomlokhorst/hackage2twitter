@@ -18,6 +18,7 @@ license:             BSD3
 license-file:        LICENSE
 author:              Tom Lokhorst
 maintainer:          Tom Lokhorst <tom@lokhorst.eu>
+homepage:            http://github.com/tomlokhorst/hackage2twitter
 stability:           Experimental
 category:            Distribution, Web
 build-type:          Simple
