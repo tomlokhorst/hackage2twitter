@@ -1,5 +1,5 @@
 name:                hackage2twitter
-version:             0.2.0
+version:             0.2.1
 synopsis:            Send new Hackage releases to Twitter
 description:         Build on the `feed2twitter` library, this program reads
                      the Hackage RSS feed and tweets each new release to
@@ -27,8 +27,7 @@ cabal-version:       >= 1.6
 executable hackage2twitter
   build-depends:     base >= 4,
                      feed >= 0.3.6,
-                     feed2twitter >= 0.1,
-                     tagsoup >= 0.6
+                     feed2twitter >= 0.2
   main-is:           Main.hs
   hs-source-dirs:    src
 

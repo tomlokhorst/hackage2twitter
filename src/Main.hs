@@ -13,7 +13,6 @@
 -------------------------------------------------------------------------------
 module Main where
 
-import Text.HTML.TagSoup
 import Text.RSS.Syntax
 import Web.Feed2Twitter
 
@@ -41,15 +40,23 @@ main = do
 -- Map a RSS item to a tweet.
 -- This function will fail on a few `fromJust`s if the Hackage RSS feed ever changes.
 rssItem2tweet :: RSSItem -> Tweet
-rssItem2tweet ri = trunc4url (title ++ ", added by " ++ uploader ++ ": " ++ blurb) ++ url
+rssItem2tweet ri = trunc4url (title ++ ", added by " ++ uploader
+                               ++ maybe "." (": " ++) blurb) ++ url
   where
     title     = filter (/='\n') . fromJust . rssItemTitle $ ri
     uploader  = take (fromJust $ elemIndex ',' uploader') uploader'
-    blurb     = last tags
+    blurb     = fmap (\x -> drop (x + 3) desc) (findSubList "<p>" desc)
     url       = fromJust . rssItemLink $ ri
     guid      = rssGuidValue . fromJust . rssItemGuid $ ri
-    tags      = [ e | TagText e <- parseTags (fromJust . rssItemDescription $ ri) ]
-    uploader' = drop 9 $ head tags
+    desc      = map (\x -> if x == '\n' then ' ' else x)
+                  . fromJust . rssItemDescription $ ri
+    uploader' = drop 12 desc
+
+findSubList :: Eq a => [a] -> [a] -> Maybe Int
+findSubList [] s2 = Nothing
+findSubList s1 s2 = listToMaybe $ filter (\x -> isPrefixOf s1 $ drop x s2) xs
+  where
+    xs = elemIndices (head s1) s2
 
 defaultConfig :: Config
 defaultConfig = Config
