@@ -5,7 +5,7 @@ description:         Build on the `feed2twitter` library, this program reads
                      the Hackage RSS feed and tweets each new release to
                      Twitter.
                      .
-                     The RSS feed is read only once. To keep updating, call
+                     The Hackage feed is read only once. To keep updating, call
                      this program every few minutes in a cron job.
                      .
                      A local cache of the last 20 tweets is kept in a file to
