@@ -1,5 +1,5 @@
 name:                hackage2twitter
-version:             0.2.1
+version:             0.2.2
 synopsis:            Send new Hackage releases to Twitter
 description:         Build on the `feed2twitter` library, this program reads
                      the Hackage RSS feed and tweets each new release to
@@ -8,7 +8,7 @@ description:         Build on the `feed2twitter` library, this program reads
                      The Hackage feed is read only once. To keep updating, call
                      this program every few minutes in a cron job.
                      .
-                     A local cache of the last 20 tweets is kept in a file to
+                     A local cache of the last 50 tweets is kept in a file to
                      make sure no duplicates are sent.
                      .
                      Usage:

@@ -64,7 +64,7 @@ defaultConfig = Config
   , username = ""
   , password = ""
   , cacheFile = ""
-  , cacheSize = 20
+  , cacheSize = 50 -- RSS feed claims to be 20, but currently is 21, better safe than sorry.
   , debugMode = False
   }
 
